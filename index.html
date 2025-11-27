@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Pattern Accessibility Test</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .card {
+        position: relative;
+        background-color: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 24px;
+        max-width: 320px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .card:hover {
+        border-color: #3b82f6;
+      }
+
+      .card__overlay-link {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        border-radius: inherit;
+      }
+
+      .card__title {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+        color: #111827;
+      }
+
+      .card__description {
+        color: #4b5563;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .card__nested-link {
+        position: relative;
+        z-index: 2;
+        color: #2563eb;
+        text-decoration: underline;
+      }
+
+      .card__action-button {
+        position: relative;
+        z-index: 2;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .card__action-button:hover {
+        background-color: #dc2626;
+      }
+    </style>
+  </head>
+  <body>
+    <article class="card">
+      <a
+        href="https://wordpress.org"
+        class="card__overlay-link"
+        aria-label="View full details"
+      ></a>
+
+      <h2 class="card__title">WordPress.org</h2>
+
+      <div class="card__description">
+        <p>
+          This is sample text to occupy space. The entire card is clickable via
+          the primary overlay link.
+        </p>
+        <p>
+          This
+          <a href="https://google.com" class="card__nested-link"
+            >secondary link</a
+          >
+          is independent.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="card__action-button"
+        onclick="alert('Button clicked')"
+      >
+        Secondary Action
+      </button>
+    </article>
+  </body>
+</html>
