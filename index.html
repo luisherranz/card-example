@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Interactivity API</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Card Pattern Accessibility Test</title>
+    <meta name="viewport" content="width=device-width" />
     <style>
       body {
         font-family: system-ui, -apple-system, sans-serif;
@@ -23,17 +23,20 @@
         padding: 24px;
         max-width: 320px;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        /* Important to show focus on the card itself */
+        outline: none;
       }
 
       .card:hover {
         border-color: #3b82f6;
       }
 
-      .card__overlay-link {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        border-radius: inherit;
+      .card:focus-visible {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
       }
 
       .card__title {
@@ -72,15 +75,20 @@
         background-color: #dc2626;
       }
     </style>
+    <script type="module" crossorigin src="/assets/index-BIfdtrSo.js"></script>
   </head>
   <body>
-    <article class="card">
-      <a
-        href="https://wordpress.org"
-        class="card__overlay-link"
-        aria-label="View full details"
-      ></a>
-
+    <!-- wp:cover-block -->
+    <article
+      class="card"
+      data-card-href="https://wordpress.org"
+      role="link"
+      tabindex="0"
+      data-wp-interactive="core/cover"
+      data-wp-on--mousedown="actions.startTimer"
+      data-wp-on--mouseup="actions.handleClick"
+      data-wp-on--keydown="actions.handleEnter"
+    >
       <h2 class="card__title">WordPress.org</h2>
 
       <div class="card__description">
@@ -88,6 +96,7 @@
           This is sample text to occupy space. The entire card is clickable via
           the primary overlay link.
         </p>
+
         <p>
           This
           <a href="https://google.com" class="card__nested-link"
@@ -105,5 +114,6 @@
         Secondary Action
       </button>
     </article>
+    <!-- /wp:cover-block -->
   </body>
 </html>
